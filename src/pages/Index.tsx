@@ -355,7 +355,7 @@ const Index = () => {
       <footer className="bg-secondary/30 py-12 mt-24">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <img src="https://cdn.poehali.dev/files/logoza.ru.png" alt="Pytex" className="h-8" />
+            <img src="https://cdn.poehali.dev/files/лого.png" alt="ÉLÉGANCE" className="h-10" />
             <p className="text-sm text-muted-foreground">
               © 2024 ÉLÉGANCE. Все права защищены.
             </p>
