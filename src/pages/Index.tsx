@@ -260,36 +260,42 @@ const Index = () => {
             <div className="container mx-auto px-6">
               <h2 className="text-5xl font-light mb-12 text-center">Наша команда</h2>
               <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <Card className="border-0 shadow-md">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                      <span className="text-5xl text-white">А</span>
+                <Card className="border-0 shadow-md overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="aspect-square overflow-hidden">
+                      <img src="https://cdn.poehali.dev/projects/cad820ec-f1e6-4a32-8f3d-0cbccce390ad/files/8d63a8c1-525b-4d42-af33-c58f10818241.jpg" alt="Анна Волкова" className="w-full h-full object-cover" />
                     </div>
-                    <h3 className="text-2xl font-light mb-2">Анна Волкова</h3>
-                    <p className="text-muted-foreground mb-4">Старший косметолог</p>
-                    <p className="text-sm">15 лет опыта в индустрии красоты. Специализируется на уходовых процедурах и подборе косметики</p>
+                    <div className="p-6 text-center">
+                      <h3 className="text-2xl font-light mb-2">Анна Волкова</h3>
+                      <p className="text-muted-foreground mb-4">Старший косметолог</p>
+                      <p className="text-sm">15 лет опыта в индустрии красоты. Специализируется на уходовых процедурах и подборе косметики</p>
+                    </div>
                   </CardContent>
                 </Card>
 
-                <Card className="border-0 shadow-md">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                      <span className="text-5xl text-white">Е</span>
+                <Card className="border-0 shadow-md overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="aspect-square overflow-hidden">
+                      <img src="https://cdn.poehali.dev/projects/cad820ec-f1e6-4a32-8f3d-0cbccce390ad/files/825b50f6-03ee-4e98-8019-e2cf2f512d14.jpg" alt="Елена Морозова" className="w-full h-full object-cover" />
                     </div>
-                    <h3 className="text-2xl font-light mb-2">Елена Морозова</h3>
-                    <p className="text-muted-foreground mb-4">Визажист-стилист</p>
-                    <p className="text-sm">10 лет опыта работы с премиальными брендами. Создает уникальные образы для особых событий</p>
+                    <div className="p-6 text-center">
+                      <h3 className="text-2xl font-light mb-2">Елена Морозова</h3>
+                      <p className="text-muted-foreground mb-4">Визажист-стилист</p>
+                      <p className="text-sm">10 лет опыта работы с премиальными брендами. Создает уникальные образы для особых событий</p>
+                    </div>
                   </CardContent>
                 </Card>
 
-                <Card className="border-0 shadow-md">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                      <span className="text-5xl text-white">М</span>
+                <Card className="border-0 shadow-md overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="aspect-square overflow-hidden">
+                      <img src="https://cdn.poehali.dev/projects/cad820ec-f1e6-4a32-8f3d-0cbccce390ad/files/32e59b1a-a8dc-446b-b329-c6d0c62a2721.jpg" alt="Мария Соколова" className="w-full h-full object-cover" />
                     </div>
-                    <h3 className="text-2xl font-light mb-2">Мария Соколова</h3>
-                    <p className="text-muted-foreground mb-4">Парфюмерный консультант</p>
-                    <p className="text-sm">8 лет в парфюмерной индустрии. Поможет найти идеальный аромат для вашего стиля</p>
+                    <div className="p-6 text-center">
+                      <h3 className="text-2xl font-light mb-2">Мария Соколова</h3>
+                      <p className="text-muted-foreground mb-4">Парфюмерный консультант</p>
+                      <p className="text-sm">8 лет в парфюмерной индустрии. Поможет найти идеальный аромат для вашего стиля</p>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
