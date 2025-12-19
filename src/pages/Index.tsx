@@ -345,55 +345,89 @@ const Index = () => {
 
         {activeSection === 'contact' && (
           <section className="py-24 bg-white">
-            <div className="container mx-auto px-6 max-w-2xl">
-              <h2 className="text-5xl font-light mb-12 text-center animate-fade-in">Контакты</h2>
-              <div className="space-y-8 animate-fade-in-up">
-                <Card className="border-0 shadow-lg">
-                  <CardContent className="p-8 space-y-6">
-                    <div className="flex items-start gap-4">
-                      <Icon name="MapPin" size={24} className="text-primary mt-1" />
-                      <div>
-                        <h3 className="text-lg font-medium mb-2">Адрес</h3>
-                        <p className="text-muted-foreground">
-                          г. Москва, Кутузовский проспект, 48<br />
-                          ТЦ "Времена года", 2 этаж
-                        </p>
+            <div className="container mx-auto px-6">
+              <h2 className="text-5xl font-light mb-12 text-center animate-fade-in">Наши магазины</h2>
+              
+              <div className="max-w-6xl mx-auto space-y-8 animate-fade-in-up">
+                <div className="grid md:grid-cols-3 gap-6">
+                  <Card className="border-0 shadow-md">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-medium mb-4">ТЦ "Времена года"</h3>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex items-start gap-2">
+                          <Icon name="MapPin" size={16} className="text-primary mt-0.5" />
+                          <p className="text-muted-foreground">Кутузовский пр-т, 48, 2 этаж</p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Icon name="Phone" size={16} className="text-primary mt-0.5" />
+                          <p className="text-muted-foreground">+7 (495) 123-45-67</p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Icon name="Clock" size={16} className="text-primary mt-0.5" />
+                          <p className="text-muted-foreground">Ежедневно 10:00-22:00</p>
+                        </div>
                       </div>
-                    </div>
+                    </CardContent>
+                  </Card>
 
-                    <div className="flex items-start gap-4">
-                      <Icon name="Phone" size={24} className="text-primary mt-1" />
-                      <div>
-                        <h3 className="text-lg font-medium mb-2">Телефон</h3>
-                        <p className="text-muted-foreground">+7 (495) 123-45-67</p>
+                  <Card className="border-0 shadow-md">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-medium mb-4">ЦУМ</h3>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex items-start gap-2">
+                          <Icon name="MapPin" size={16} className="text-primary mt-0.5" />
+                          <p className="text-muted-foreground">ул. Петровка, 2, 1 этаж</p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Icon name="Phone" size={16} className="text-primary mt-0.5" />
+                          <p className="text-muted-foreground">+7 (495) 234-56-78</p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Icon name="Clock" size={16} className="text-primary mt-0.5" />
+                          <p className="text-muted-foreground">Ежедневно 10:00-22:00</p>
+                        </div>
                       </div>
-                    </div>
+                    </CardContent>
+                  </Card>
 
-                    <div className="flex items-start gap-4">
-                      <Icon name="Mail" size={24} className="text-primary mt-1" />
+                  <Card className="border-0 shadow-md">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-medium mb-4">ТЦ "Афимолл Сити"</h3>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex items-start gap-2">
+                          <Icon name="MapPin" size={16} className="text-primary mt-0.5" />
+                          <p className="text-muted-foreground">Пресненская наб., 2, 3 этаж</p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Icon name="Phone" size={16} className="text-primary mt-0.5" />
+                          <p className="text-muted-foreground">+7 (495) 345-67-89</p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <Icon name="Clock" size={16} className="text-primary mt-0.5" />
+                          <p className="text-muted-foreground">Ежедневно 10:00-22:00</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <Card className="border-0 shadow-md">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-3 mb-4">
+                      <Icon name="Mail" size={20} className="text-primary mt-0.5" />
                       <div>
-                        <h3 className="text-lg font-medium mb-2">Email</h3>
+                        <h3 className="text-lg font-medium mb-1">Email для связи</h3>
                         <p className="text-muted-foreground">info@elegance-beauty.ru</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <Icon name="Clock" size={24} className="text-primary mt-1" />
-                      <div>
-                        <h3 className="text-lg font-medium mb-2">Режим работы</h3>
-                        <p className="text-muted-foreground">
-                          Ежедневно с 10:00 до 22:00
-                        </p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                <div className="mt-8 rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg">
                   <iframe
-                    src="https://yandex.ru/map-widget/v1/?ll=37.532310,55.741856&z=17&l=map&pt=37.532310,55.741856,pm2rdm"
+                    src="https://yandex.ru/map-widget/v1/?ll=37.617700,55.755800&z=11&l=map&pt=37.532310,55.741856,pm2rdm~37.620070,55.763340,pm2rdm~37.537520,55.749520,pm2rdm"
                     width="100%"
-                    height="400"
+                    height="500"
                     frameBorder="0"
                     style={{ border: 0 }}
                     allowFullScreen
