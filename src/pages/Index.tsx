@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Slider } from '@/components/ui/slider';
-import { Checkbox } from '@/components/ui/checkbox';
 import Icon from '@/components/ui/icon';
+import Header from '@/components/Header';
+import ProductCard from '@/components/ProductCard';
+import CatalogFilters from '@/components/CatalogFilters';
 
 type Product = {
   id: number;
@@ -167,120 +166,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold tracking-tight text-foreground">ÉLÉGANCE</h1>
-            
-            <nav className="hidden md:flex items-center gap-8">
-              {['home', 'catalog', 'about', 'promo', 'contact'].map(section => (
-                <button
-                  key={section}
-                  onClick={() => setActiveSection(section)}
-                  className={`text-sm uppercase tracking-wider transition-colors ${
-                    activeSection === section ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {section === 'home' && 'Главная'}
-                  {section === 'catalog' && 'Каталог'}
-                  {section === 'about' && 'О бренде'}
-                  {section === 'promo' && 'Акции'}
-                  {section === 'contact' && 'Контакты'}
-                </button>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" className="relative">
-                <Icon name="Search" size={20} />
-              </Button>
-              
-              <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="relative">
-                    <Icon name="ShoppingBag" size={20} />
-                    {cartItemsCount > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                        {cartItemsCount}
-                      </span>
-                    )}
-                  </Button>
-                </SheetTrigger>
-                <SheetContent className="w-full sm:max-w-lg">
-                  <SheetHeader>
-                    <SheetTitle className="text-2xl">Корзина</SheetTitle>
-                  </SheetHeader>
-                  
-                  <div className="mt-8 flex flex-col gap-6">
-                    {cart.length === 0 ? (
-                      <p className="text-center text-muted-foreground py-12">Корзина пуста</p>
-                    ) : (
-                      <>
-                        <div className="flex flex-col gap-4 max-h-[60vh] overflow-y-auto">
-                          {cart.map(item => (
-                            <div key={item.id} className="flex gap-4 pb-4 border-b">
-                              <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded" />
-                              <div className="flex-1">
-                                <h4 className="font-medium">{item.name}</h4>
-                                <p className="text-sm text-muted-foreground">{item.brand}</p>
-                                <div className="flex items-center gap-2 mt-2">
-                                  <Button
-                                    variant="outline"
-                                    size="icon"
-                                    className="h-7 w-7"
-                                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                  >
-                                    <Icon name="Minus" size={14} />
-                                  </Button>
-                                  <span className="w-8 text-center">{item.quantity}</span>
-                                  <Button
-                                    variant="outline"
-                                    size="icon"
-                                    className="h-7 w-7"
-                                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                  >
-                                    <Icon name="Plus" size={14} />
-                                  </Button>
-                                </div>
-                              </div>
-                              <div className="flex flex-col items-end justify-between">
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="h-8 w-8"
-                                  onClick={() => removeFromCart(item.id)}
-                                >
-                                  <Icon name="X" size={16} />
-                                </Button>
-                                <p className="font-medium">
-                                  {(item.discount
-                                    ? item.price * (1 - item.discount / 100)
-                                    : item.price
-                                  ).toLocaleString('ru-RU')} ₽
-                                </p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        
-                        <div className="border-t pt-4">
-                          <div className="flex justify-between items-center mb-4">
-                            <span className="text-lg font-medium">Итого:</span>
-                            <span className="text-2xl font-bold">{cartTotal.toLocaleString('ru-RU')} ₽</span>
-                          </div>
-                          <Button className="w-full" size="lg">
-                            Оформить заказ
-                          </Button>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+        cart={cart}
+        isCartOpen={isCartOpen}
+        setIsCartOpen={setIsCartOpen}
+        updateQuantity={updateQuantity}
+        removeFromCart={removeFromCart}
+        cartTotal={cartTotal}
+        cartItemsCount={cartItemsCount}
+      />
 
       <main className="pt-20">
         {activeSection === 'home' && (
@@ -306,53 +202,12 @@ const Index = () => {
                   {products
                     .filter(p => p.isNew)
                     .map((product, idx) => (
-                      <Card
+                      <ProductCard
                         key={product.id}
-                        className="group border-0 shadow-none hover:shadow-lg transition-all duration-300 animate-fade-in-up"
-                        style={{ animationDelay: `${idx * 100}ms` }}
-                      >
-                        <CardContent className="p-0">
-                          <div className="relative overflow-hidden bg-secondary/30 aspect-square">
-                            <img
-                              src={product.image}
-                              alt={product.name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                            {product.isNew && (
-                              <Badge className="absolute top-4 left-4 bg-primary">Новинка</Badge>
-                            )}
-                            {product.discount && (
-                              <Badge className="absolute top-4 right-4 bg-destructive">-{product.discount}%</Badge>
-                            )}
-                          </div>
-                          <div className="p-6">
-                            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                              {product.brand}
-                            </p>
-                            <h4 className="text-xl font-medium mb-2">{product.name}</h4>
-                            <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
-                            <div className="flex items-center justify-between">
-                              <div>
-                                {product.discount ? (
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-2xl font-medium">
-                                      {(product.price * (1 - product.discount / 100)).toLocaleString('ru-RU')} ₽
-                                    </span>
-                                    <span className="text-sm text-muted-foreground line-through">
-                                      {product.price.toLocaleString('ru-RU')} ₽
-                                    </span>
-                                  </div>
-                                ) : (
-                                  <span className="text-2xl font-medium">{product.price.toLocaleString('ru-RU')} ₽</span>
-                                )}
-                              </div>
-                              <Button onClick={() => addToCart(product)}>
-                                <Icon name="ShoppingBag" size={18} />
-                              </Button>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                        product={product}
+                        onAddToCart={addToCart}
+                        index={idx}
+                      />
                     ))}
                 </div>
               </div>
@@ -366,64 +221,17 @@ const Index = () => {
               <h2 className="text-5xl font-light mb-12 text-center">Каталог</h2>
               
               <div className="flex flex-col lg:flex-row gap-12">
-                <aside className="lg:w-64 space-y-8">
-                  <div>
-                    <h3 className="text-lg font-medium mb-4">Категории</h3>
-                    <div className="space-y-3">
-                      {categories.map(category => (
-                        <div key={category} className="flex items-center space-x-2">
-                          <Checkbox
-                            id={`cat-${category}`}
-                            checked={selectedCategories.includes(category)}
-                            onCheckedChange={() => toggleCategory(category)}
-                          />
-                          <label htmlFor={`cat-${category}`} className="text-sm cursor-pointer">
-                            {category}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-medium mb-4">Бренды</h3>
-                    <div className="space-y-3">
-                      {brands.map(brand => (
-                        <div key={brand} className="flex items-center space-x-2">
-                          <Checkbox
-                            id={`brand-${brand}`}
-                            checked={selectedBrands.includes(brand)}
-                            onCheckedChange={() => toggleBrand(brand)}
-                          />
-                          <label htmlFor={`brand-${brand}`} className="text-sm cursor-pointer">
-                            {brand}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-medium mb-4">Цена</h3>
-                    <div className="space-y-4">
-                      <Slider
-                        value={priceRange}
-                        onValueChange={setPriceRange}
-                        max={10000}
-                        step={500}
-                        className="w-full"
-                      />
-                      <div className="flex justify-between text-sm text-muted-foreground">
-                        <span>{priceRange[0].toLocaleString('ru-RU')} ₽</span>
-                        <span>{priceRange[1].toLocaleString('ru-RU')} ₽</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Button variant="outline" className="w-full" onClick={resetFilters}>
-                    Сбросить фильтры
-                  </Button>
-                </aside>
+                <CatalogFilters
+                  categories={categories}
+                  brands={brands}
+                  selectedCategories={selectedCategories}
+                  selectedBrands={selectedBrands}
+                  priceRange={priceRange}
+                  onToggleCategory={toggleCategory}
+                  onToggleBrand={toggleBrand}
+                  onPriceRangeChange={setPriceRange}
+                  onResetFilters={resetFilters}
+                />
 
                 <div className="flex-1">
                   <div className="mb-6 text-sm text-muted-foreground">
@@ -432,59 +240,13 @@ const Index = () => {
                   
                   <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                     {filteredProducts.map((product, idx) => (
-                      <Card
+                      <ProductCard
                         key={product.id}
-                        className="group border-0 shadow-none hover:shadow-lg transition-all duration-300 animate-scale-in"
-                        style={{ animationDelay: `${idx * 50}ms` }}
-                      >
-                        <CardContent className="p-0">
-                          <div className="relative overflow-hidden bg-secondary/30 aspect-square">
-                            <img
-                              src={product.image}
-                              alt={product.name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                            {product.isNew && (
-                              <Badge className="absolute top-4 left-4 bg-primary">Новинка</Badge>
-                            )}
-                            {product.discount && (
-                              <Badge className="absolute top-4 right-4 bg-destructive">-{product.discount}%</Badge>
-                            )}
-                            {!product.inStock && (
-                              <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                <span className="text-white font-medium">Нет в наличии</span>
-                              </div>
-                            )}
-                          </div>
-                          <div className="p-6">
-                            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                              {product.brand}
-                            </p>
-                            <h4 className="text-xl font-medium mb-2">{product.name}</h4>
-                            <p className="text-sm text-muted-foreground mb-1">{product.description}</p>
-                            <p className="text-xs text-muted-foreground mb-4">{product.volume}</p>
-                            <div className="flex items-center justify-between">
-                              <div>
-                                {product.discount ? (
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-2xl font-medium">
-                                      {(product.price * (1 - product.discount / 100)).toLocaleString('ru-RU')} ₽
-                                    </span>
-                                    <span className="text-sm text-muted-foreground line-through">
-                                      {product.price.toLocaleString('ru-RU')} ₽
-                                    </span>
-                                  </div>
-                                ) : (
-                                  <span className="text-2xl font-medium">{product.price.toLocaleString('ru-RU')} ₽</span>
-                                )}
-                              </div>
-                              <Button onClick={() => addToCart(product)} disabled={!product.inStock}>
-                                <Icon name="ShoppingBag" size={18} />
-                              </Button>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                        product={product}
+                        onAddToCart={addToCart}
+                        index={idx}
+                        showVolume={true}
+                      />
                     ))}
                   </div>
                 </div>
@@ -526,46 +288,13 @@ const Index = () => {
                 {products
                   .filter(p => p.discount)
                   .map((product, idx) => (
-                    <Card
+                    <ProductCard
                       key={product.id}
-                      className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 animate-scale-in"
-                      style={{ animationDelay: `${idx * 100}ms` }}
-                    >
-                      <CardContent className="p-0">
-                        <div className="relative overflow-hidden bg-secondary/30 aspect-square">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <Badge className="absolute top-4 right-4 bg-destructive text-lg px-4 py-2">
-                            -{product.discount}%
-                          </Badge>
-                        </div>
-                        <div className="p-8">
-                          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                            {product.brand}
-                          </p>
-                          <h4 className="text-2xl font-medium mb-2">{product.name}</h4>
-                          <p className="text-sm text-muted-foreground mb-6">{product.description}</p>
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <div className="flex items-center gap-3">
-                                <span className="text-3xl font-medium">
-                                  {(product.price * (1 - product.discount! / 100)).toLocaleString('ru-RU')} ₽
-                                </span>
-                                <span className="text-lg text-muted-foreground line-through">
-                                  {product.price.toLocaleString('ru-RU')} ₽
-                                </span>
-                              </div>
-                            </div>
-                            <Button size="lg" onClick={() => addToCart(product)}>
-                              В корзину
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                      product={product}
+                      onAddToCart={addToCart}
+                      index={idx}
+                      size="large"
+                    />
                   ))}
               </div>
             </div>
