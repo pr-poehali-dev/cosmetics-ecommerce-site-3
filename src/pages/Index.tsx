@@ -255,6 +255,48 @@ const Index = () => {
           </section>
         )}
 
+        {activeSection === 'team' && (
+          <section className="py-24 bg-white">
+            <div className="container mx-auto px-6">
+              <h2 className="text-5xl font-light mb-12 text-center">Наша команда</h2>
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <Card className="border-0 shadow-md">
+                  <CardContent className="p-8 text-center">
+                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                      <span className="text-5xl text-white">А</span>
+                    </div>
+                    <h3 className="text-2xl font-light mb-2">Анна Волкова</h3>
+                    <p className="text-muted-foreground mb-4">Старший косметолог</p>
+                    <p className="text-sm">15 лет опыта в индустрии красоты. Специализируется на уходовых процедурах и подборе косметики</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-0 shadow-md">
+                  <CardContent className="p-8 text-center">
+                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                      <span className="text-5xl text-white">Е</span>
+                    </div>
+                    <h3 className="text-2xl font-light mb-2">Елена Морозова</h3>
+                    <p className="text-muted-foreground mb-4">Визажист-стилист</p>
+                    <p className="text-sm">10 лет опыта работы с премиальными брендами. Создает уникальные образы для особых событий</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-0 shadow-md">
+                  <CardContent className="p-8 text-center">
+                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                      <span className="text-5xl text-white">М</span>
+                    </div>
+                    <h3 className="text-2xl font-light mb-2">Мария Соколова</h3>
+                    <p className="text-muted-foreground mb-4">Парфюмерный консультант</p>
+                    <p className="text-sm">8 лет в парфюмерной индустрии. Поможет найти идеальный аромат для вашего стиля</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+        )}
+
         {activeSection === 'about' && (
           <section className="py-24 bg-white">
             <div className="container mx-auto px-6 max-w-4xl">
@@ -346,6 +388,19 @@ const Index = () => {
                     </div>
                   </CardContent>
                 </Card>
+
+                <div className="mt-8 rounded-lg overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://yandex.ru/map-widget/v1/?ll=37.532310,55.741856&z=17&l=map&pt=37.532310,55.741856,pm2rdm"
+                    width="100%"
+                    height="400"
+                    frameBorder="0"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </section>

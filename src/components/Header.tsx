@@ -48,7 +48,7 @@ const Header = ({
           <img src="https://cdn.poehali.dev/files/лого.png" alt="ÉLÉGANCE" className="h-10" />
           
           <nav className="hidden md:flex items-center gap-8">
-            {['home', 'catalog', 'about', 'promo', 'contact'].map(section => (
+            {['home', 'catalog', 'team', 'about', 'promo', 'contact'].map(section => (
               <button
                 key={section}
                 onClick={() => setActiveSection(section)}
@@ -58,6 +58,7 @@ const Header = ({
               >
                 {section === 'home' && 'Главная'}
                 {section === 'catalog' && 'Каталог'}
+                {section === 'team' && 'Персонал'}
                 {section === 'about' && 'О бренде'}
                 {section === 'promo' && 'Акции'}
                 {section === 'contact' && 'Контакты'}
