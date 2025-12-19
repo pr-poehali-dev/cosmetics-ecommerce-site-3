@@ -45,7 +45,7 @@ const Header = ({
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">ÉLÉGANCE</h1>
+          <img src="https://cdn.poehali.dev/files/logoza.ru.png" alt="Pytex" className="h-8" />
           
           <nav className="hidden md:flex items-center gap-8">
             {['home', 'catalog', 'about', 'promo', 'contact'].map(section => (
